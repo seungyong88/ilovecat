@@ -61,11 +61,7 @@ export default class DetailModal {
     catTemperament.className = 'cat-temperament';
     catTemperament.innerText = temperament;
 
-    closeBtn.addEventListener('click', e => {
-      // e.stopPropagation();
-      this.toggleModal();
-    });
-
+    closeBtn.addEventListener('click', e => this.toggleModal());
     overlay.addEventListener('click', e => this.toggleModal());
     
     modalHeader.appendChild(modalTitle);
