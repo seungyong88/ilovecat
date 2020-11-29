@@ -4,7 +4,7 @@ export default class ResultSection{
   constructor({$target}) {
     this.$target = $target;
     this.section = document.createElement('section');
-    this.section.innerText = 'ResultSection';
+    this.section.className = 'result-section';
     
     this.$target.appendChild(this.section);
 
@@ -12,6 +12,9 @@ export default class ResultSection{
   }
 
   render() {
-    new Card(this.section);
+    //test code
+    for(let i =0; i < 50; i++) {
+      new Card({$target: this.section, data: null});
+    }
   }
 }
