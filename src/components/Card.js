@@ -1,38 +1,36 @@
 export default class Card{
   constructor({$target, data}) {
-    this.$target = $target;
+    this.data = data;
     this.card = document.createElement('article');
     this.card.className = 'card';
     
-    this.$target.appendChild(this.card);
+    $target.appendChild(this.card);
 
     this.render();
   }
 
   render() {
-    const cardTitle = document.createElement('p');
-    cardTitle.className = 'card-title';
-    cardTitle.innerText = 'title';
-    
+    const url = this.data.url;
+    const {name, origin} = this.data.breeds.length > 0 ? this.data.breeds[0] : {name: '정보없음', origin:'정보없음'}  
+
     const cardImg = document.createElement('img');
     cardImg.className = 'card-image';
-    cardImg.src = 'null';
+    cardImg.src = url;
 
     const cardDescription = document.createElement('div');
     cardDescription.className = 'card-description';
 
-    const catTemperament = document.createElement('p');
-    catTemperament.className = 'cat-temperament';
-    catTemperament.innerText = 'cat-temperament';
+    const catName = document.createElement('p');
+    catName.className = 'cat-name';
+    catName.innerText = name;
 
     const catOrigin = document.createElement('p');
     catOrigin.className = 'cat-origin';
-    catOrigin.innerText = 'cat-origin';
+    catOrigin.innerText = origin;
 
-    cardDescription.appendChild(catTemperament);
+    cardDescription.appendChild(catName);
     cardDescription.appendChild(catOrigin);
 
-    this.card.appendChild(cardTitle);
     this.card.appendChild(cardImg);
     this.card.appendChild(cardDescription);
   }

@@ -2,19 +2,29 @@ import Card from "./Card.js";
 
 export default class ResultSection{
   constructor({$target}) {
-    this.$target = $target;
+    this.data = null;
     this.section = document.createElement('section');
     this.section.className = 'result-section';
     
-    this.$target.appendChild(this.section);
+    $target.appendChild(this.section);
+
+    this.render();
+  }
+
+  setState(data){
+    this.data = data;
 
     this.render();
   }
 
   render() {
-    //test code
-    for(let i =0; i < 50; i++) {
-      new Card({$target: this.section, data: null});
+    this.section.innerHTML = '';
+
+    if(this.data) {
+      this.data.forEach(cat => {
+        new Card({$target: this.section, data: cat});
+      })
     }
+
   }
 }

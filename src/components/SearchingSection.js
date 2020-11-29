@@ -1,12 +1,28 @@
 export default class SearchingSection{
-  constructor({$target}) {
-    this.$target = $target;
+  constructor({$target, onSearch, onRandom}) {
+    this.onSearch = onSearch;
+    this.onRandom = onRandom;
     this.section = document.createElement('section');
     this.section.className = 'searching-section';
     
-    this.$target.appendChild(this.section);
+    $target.appendChild(this.section);
 
     this.render();
+  }
+
+  searchRandomCats() {
+    this.onRandom();
+    this.deleteKeyword();
+  }
+
+  searchByKeyword(keyword){
+    this.onSearch(keyword);
+    this.deleteKeyword();
+  }
+
+  deleteKeyword(){
+    const searchBox = document.querySelector('.search-box');
+    searchBox.value = '';
   }
 
   render() {
@@ -21,9 +37,10 @@ export default class SearchingSection{
     searchBox.className = 'search-box';
     searchBox.placeholder = '고양이를 검색하세요.';
 
+    randomBtn.addEventListener('click', e => this.searchRandomCats());
     searchBox.addEventListener('keyup', e=> {
       if(e.keyCode == 13) {
-        // Todo Event
+        this.searchByKeyword(searchBox.value);
       }
     })
 
