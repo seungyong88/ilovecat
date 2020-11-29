@@ -1,0 +1,62 @@
+body {
+  padding: 0;
+  margin: 0;
+}
+
+/* .app {
+  height: 100%;
+} */
+
+.searching-section {
+  height: 10%;
+}
+
+.searching-wrapper {
+  margin:10px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.random-btn {
+  font-size: 22px;
+  border: 1px solid black;
+  box-sizing: border-box;
+
+  margin: 5px;
+}
+
+.search-box{
+  width: 60%;
+  font-size:22px;
+  /* margin-left:10px; */
+
+  margin: 5px;
+}
+
+.result-section {
+  height: 90%;
+  margin: 5px;
+
+  display: flex;
+  flex-wrap: wrap;
+  /* justify-content: flex-start; */
+}
+
+.card {
+  width: 250px;
+  height: 350px;
+
+  display: flex;
+  flex-direction: column;
+
+  border: 1px solid black;
+
+  margin-left: calc( (100% - (20% * 4)) / 4 );
+  margin-top: 6px;
+}
+
+.card-image {
+  height: 60%;
+}
