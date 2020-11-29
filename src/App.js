@@ -19,7 +19,13 @@ export default class App {
       }
     });
 
-    const resultSection = new ResultSection({$target});
+    const resultSection = new ResultSection({
+      $target,
+      onClick: data => {
+        console.log('sdd');
+        modal.setState(data);
+      }
+    });
     const modal = new DetailModal({$target});
   }
 }

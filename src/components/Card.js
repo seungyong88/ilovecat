@@ -1,12 +1,19 @@
 export default class Card{
-  constructor({$target, data}) {
+  constructor({$target, data, onClick}) {
     this.data = data;
+    this.onClick = onClick;
     this.card = document.createElement('article');
     this.card.className = 'card';
     
+    this.card.addEventListener('click', e => this.onClick(data));
+
     $target.appendChild(this.card);
 
     this.render();
+  }
+
+  setState(data) {
+    this.data = data;
   }
 
   render() {

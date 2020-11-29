@@ -1,16 +1,37 @@
 export default class DetailModal {
   constructor({$target, data}) {
     this.data = null;
-    this.overlay = document.createElement('div');
-    this.overlay.className = 'overlay';
-    // this.overlay.classList.add('hidden');
+    this.modalWrapper = document.createElement('div');
+    this.modalWrapper.className = 'modal-wrapper';
+    this.modalWrapper.classList.add('hidden');
 
-    $target.appendChild(this.overlay);
+    $target.appendChild(this.modalWrapper);
   
     this.render();
   }
 
+  setState(data) {
+    this.data = data;
+    this.toggleModal();
+    
+    this.render();
+  }
+
+  toggleModal() {
+    const modalWrapper = document.querySelector('.modal-wrapper');
+    modalWrapper.classList.toggle('hidden');
+    modalWrapper.innerHTML = '';
+  }
+
   render() {
+    if(this.data == null) return;
+
+    const url = this.data.url;
+    const {temperament, name, origin} = this.data.breeds.length > 0 ? this.data.breeds[0] : {temperament: '정보없음', name: '정보없음', origin:'정보없음'};
+    
+    const overlay = document.createElement('div');
+    overlay.className = 'overlay';
+
     const modal = document.createElement('section');
     modal.className = 'modal';
 
@@ -19,7 +40,7 @@ export default class DetailModal {
 
     const modalTitle = document.createElement('p');
     modalTitle.className = 'modal-title';
-    modalTitle.innerText = 'title'
+    modalTitle.innerText = name;
 
     const closeBtn = document.createElement('span');
     closeBtn.className = 'close-btn';
@@ -27,19 +48,26 @@ export default class DetailModal {
 
     const modalImg = document.createElement('img');
     modalImg.className = 'modal-image';
-    modalImg.src = 'https://cdn2.thecatapi.com/images/12d.jpg';
+    modalImg.src = url;
 
     const modalInfo = document.createElement('div');
     modalInfo.className = 'modal-info';
 
     const catOrigin = document.createElement('p');
     catOrigin.className = 'cat-origin';
-    catOrigin.innerText = 'cat-origin';
+    catOrigin.innerText = origin;
 
     const catTemperament = document.createElement('p');
     catTemperament.className = 'cat-temperament';
-    catTemperament.innerText = 'cat-temperament';
+    catTemperament.innerText = temperament;
 
+    closeBtn.addEventListener('click', e => {
+      // e.stopPropagation();
+      this.toggleModal();
+    });
+
+    overlay.addEventListener('click', e => this.toggleModal());
+    
     modalHeader.appendChild(modalTitle);
     modalHeader.appendChild(closeBtn);
 
@@ -50,6 +78,7 @@ export default class DetailModal {
     modal.appendChild(modalImg);
     modal.appendChild(modalInfo);
 
-    this.overlay.appendChild(modal);
+    this.modalWrapper.appendChild(overlay);
+    this.modalWrapper.appendChild(modal);
   }
 }

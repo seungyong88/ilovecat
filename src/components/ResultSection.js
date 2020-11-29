@@ -1,8 +1,9 @@
 import Card from "./Card.js";
 
 export default class ResultSection{
-  constructor({$target}) {
+  constructor({$target, onClick}) {
     this.data = null;
+    this.onClick = onClick;
     this.section = document.createElement('section');
     this.section.className = 'result-section';
     
@@ -22,7 +23,7 @@ export default class ResultSection{
 
     if(this.data) {
       this.data.forEach(cat => {
-        new Card({$target: this.section, data: cat});
+        new Card({$target: this.section, data: cat, onClick: this.onClick});
       })
     }
 
