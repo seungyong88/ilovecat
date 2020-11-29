@@ -1,5 +1,6 @@
 import SearchingSection from "./components/SearchingSection.js";
 import ResultSection from "./components/ResultSection.js";
+import DetailModal from "./components/DetailModal.js";
 import api from "./api/theCatAPI.js";
 
 export default class App {
@@ -19,5 +20,6 @@ export default class App {
     });
 
     const resultSection = new ResultSection({$target});
+    const modal = new DetailModal({$target});
   }
 }
