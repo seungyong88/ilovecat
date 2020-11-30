@@ -3,8 +3,7 @@ import ResultSection from "./components/ResultSection.js";
 import DetailModal from "./components/DetailModal.js";
 import Loading from "./components/Loading.js";
 import api from "./api/theCatAPI.js";
-import { getItem } from "./util/sessionStorage.js";
-import lazyLoad from "./util/lazyLoad.js";
+import { setItem, getItem } from "./util/sessionStorage.js";
 
 export default class App {
   constructor($target) {
@@ -35,10 +34,28 @@ export default class App {
       $target,
       onClick: data => {
         modal.setState(data);
+      },
+      onScroll: () => {
+        loading.toggleSpinner();
+
+        api.randomCats().then(data => {
+          const beforeData = getItem('data');
+          const nextData = beforeData.concat(data);
+
+          setItem('data', nextData);
+          resultSection.setState(nextData);
+          loading.toggleSpinner();
+        })
       }
     });
 
     const modal = new DetailModal({$target});
     const loading = new Loading({$target});
+
+    const darkmodeBtn = document.createElement('span');
+    darkmodeBtn.className = 'darkmode-btn';
+    darkmodeBtn.innerText = 'Darkmode';
+
+    $target.appendChild(darkmodeBtn);
   }
 }

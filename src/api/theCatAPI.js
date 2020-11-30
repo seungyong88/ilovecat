@@ -12,7 +12,7 @@ const request = async url => {
 const api = {
   fetchCats: async keyword => {
     const breeds = (await request(`${API_ENDPOINT}/breeds/search?q=${keyword}`)).map(breed => breed.id);
-    const requests = breeds.map(breed => request(`${API_ENDPOINT}/images/search?limit=50&breed_ids=${breed}`));
+    const requests = breeds.map(breed => request(`${API_ENDPOINT}/images/search?limit=20&breed_ids=${breed}`));
 
     return Promise.all(requests).then(responses => {
       let result = [];
@@ -24,7 +24,7 @@ const api = {
     })
   },
   randomCats: () => {
-    return request(`${API_ENDPOINT}/images/search?limit=50`);
+    return request(`${API_ENDPOINT}/images/search?limit=20`);
   }
 }
 
