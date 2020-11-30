@@ -13,12 +13,16 @@ export default class App {
       $target,
       keywords,
       onSearch: keyword => {
+        loading.toggleSpinner();
+
         api.fetchCats(keyword).then(cats => {
           loading.toggleSpinner();
           resultSection.setState(cats);
         })
       },
       onRandom: () => {
+        loading.toggleSpinner();
+
         api.randomCats().then(cats => {
           loading.toggleSpinner();
           resultSection.setState(cats);
