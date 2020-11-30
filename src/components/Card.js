@@ -22,7 +22,11 @@ export default class Card{
 
     const cardImg = document.createElement('img');
     cardImg.className = 'card-image';
-    cardImg.src = url;
+    // cardImg.src = url;
+    cardImg.classList.add('lazy');
+    cardImg.src = 'src/images/cat.png';
+    cardImg.dataset.src = url;
+    cardImg.dataset.srcset = url;
 
     const cardDescription = document.createElement('div');
     cardDescription.className = 'card-description';

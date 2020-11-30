@@ -1,4 +1,5 @@
 import Card from "./Card.js";
+import lazyLoad from "../util/lazyLoad.js";
 
 export default class ResultSection{
   constructor({$target, onClick}) {
@@ -8,13 +9,12 @@ export default class ResultSection{
     this.section.className = 'result-section';
     
     $target.appendChild(this.section);
-
     this.render();
   }
 
   setState(data){
     this.data = data;
-
+    lazyLoad();
     this.render();
   }
 
@@ -39,5 +39,6 @@ export default class ResultSection{
       this.section.appendChild(noDataWrapper);
     }
 
+    lazyLoad();
   }
 }

@@ -4,6 +4,7 @@ import DetailModal from "./components/DetailModal.js";
 import Loading from "./components/Loading.js";
 import api from "./api/theCatAPI.js";
 import { getItem } from "./util/sessionStorage.js";
+import lazyLoad from "./util/lazyLoad.js";
 
 export default class App {
   constructor($target) {
@@ -40,5 +41,4 @@ export default class App {
     const modal = new DetailModal({$target});
     const loading = new Loading({$target});
   }
-
 }
