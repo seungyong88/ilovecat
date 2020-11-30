@@ -3,7 +3,7 @@ import ResultSection from "./components/ResultSection.js";
 import DetailModal from "./components/DetailModal.js";
 import Loading from "./components/Loading.js";
 import api from "./api/theCatAPI.js";
-import { setItem, getItem } from "./util/sessionStorage.js";
+import { getItem } from "./util/sessionStorage.js";
 
 export default class App {
   constructor($target) {
@@ -36,4 +36,5 @@ export default class App {
     const modal = new DetailModal({$target});
     const loading = new Loading({$target});
   }
+
 }

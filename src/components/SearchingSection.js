@@ -11,6 +11,12 @@ export default class SearchingSection{
     $target.appendChild(this.section);
 
     this.render();
+
+    this.initFocus();
+  }
+
+  initFocus() {
+    document.querySelector('.search-box').focus();
   }
 
   searchRandomCats() {
